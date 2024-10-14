@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    name: tripmap
+    url: jdbc:mysql://110.64.89.20:3306/tripmap
+    username: visitor
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    
+jdbc:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://110.64.89.20:3306/tripmap
+  username: visitor
+  password: 123456
