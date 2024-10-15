@@ -2,7 +2,7 @@
  * @Author: BJlaoma 150590206+BJlaoma@users.noreply.github.com
  * @Date: 2024-05-21 11:45:31
  * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-05-22 00:55:55
+ * @LastEditTime: 2024-10-16 00:17:10
  * @FilePath: \demo\demo\src\main\java\com\pojo\JSONresult.java
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
