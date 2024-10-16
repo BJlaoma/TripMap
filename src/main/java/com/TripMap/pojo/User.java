@@ -22,6 +22,7 @@ public class User {
     private LocalDate createdAt;//创建用户的时间
     private LocalDate updatedAt;//上次更新用户时间
 
+    public User(){}//数据库要求有默认构造函数
     public User(String name,String password){
         uuid=new UUID(0, 0);
         this.name=name;
@@ -30,7 +31,7 @@ public class User {
         updatedAt=LocalDate.now();
     }
 
-    protected UUID getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
