@@ -7,15 +7,16 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import com.TripMap.pojo.User;
+import com.TripMap.pojo.UserDocument;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 
 public class Usermapper extends mapper {
-    MongoCollection<User> collection;
+    MongoCollection<Document> collection;
 
     public Usermapper(){
         super();
-        collection=super.getDatabase().getCollection("user",User.class);
+        collection=super.getDatabase().getCollection("user");
     }
 
     /**
@@ -26,12 +27,8 @@ public class Usermapper extends mapper {
      */
     public boolean foundUser(String name){
         Bson filter=Filters.eq("name",name);
-        FindIterable<User> doc=collection.find(filter);
-        if(doc==null){
-                return false;
-        }else{
-            return true;
-        }
+        FindIterable<Document> doc=collection.find(filter);
+        return doc.iterator().hasNext();//如果有下一个文档，返回 true；否则返回 false
     }
 
     /**
@@ -41,14 +38,24 @@ public class Usermapper extends mapper {
      */
     public User foundUser(String name,String password) throws Exception{
         Bson filter=Filters.and(Filters.eq("name",name),Filters.eq("password",password));
-        User doc=collection.find(filter,User.class).first();
+        Document doc=collection.find(filter).first();
+
         if(doc==null){
             throw new Exception("登录失败，账号或者密码错误");
         }
-        return doc;
+        return new User(doc);
     }
 
     public void addUser(User user){
-        collection.insertOne(user);
+        collection.insertOne(new UserDocument(user));
+    }
+
+    public static void main(String[] args) throws Exception {
+        User user=new User("2", "2");
+        Usermapper map=new Usermapper();
+    //    map.addUser(user);
+        System.out.println("添加成功");
+        System.out.println(map.foundUser("2"));
+        System.out.println(map.foundUser("2", "2").toString());
     }
 }

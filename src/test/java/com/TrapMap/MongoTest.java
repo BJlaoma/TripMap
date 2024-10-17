@@ -15,6 +15,8 @@ import com.mongodb.client.result.DeleteResult;
 
 
 public class MongoTest {
+
+    
     public static void main(String[] args) {
         String uri = "mongodb://localhost:27017";
 

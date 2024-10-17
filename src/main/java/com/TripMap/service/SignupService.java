@@ -8,7 +8,8 @@ import com.TripMap.pojo.User;
 //注册
 @Service
 public class SignupService {
-    public UUID Signup(String name,String password) throws Exception{
+    public SignupService(){}
+    public User Signup(String name,String password) throws Exception{
         /*
          * 询问数据库是否已经有相同名字的用户
          */
@@ -22,6 +23,6 @@ public class SignupService {
          */
         mapper.addUser(user);
         mapper.close();
-        return user.getUuid();
+        return user;
     }
 }

@@ -8,6 +8,7 @@
 package com.TripMap.pojo;
 import java.util.UUID;
 
+import org.bson.Document;
 import org.bson.codecs.jsr310.LocalDateCodec;
 
 import lombok.Data;
@@ -24,11 +25,20 @@ public class User {
 
     public User(){}//数据库要求有默认构造函数
     public User(String name,String password){
-        uuid=new UUID(0, 0);
+        uuid=UUID.randomUUID();
         this.name=name;
         this.password=password;
         createdAt=LocalDate.now();
         updatedAt=LocalDate.now();
+        avatarUrl="";
+    }
+    public User(Document doc){
+        this.uuid=UUID.fromString(doc.getString("uuid"));
+        this.name=doc.getString("name");
+        this.password=doc.getString("password");
+        this.avatarUrl=doc.getString("avatarUrl");
+        this.createdAt=LocalDate.parse(doc.getString("createdAt"));
+        this.updatedAt=LocalDate.parse(doc.getString("updatedAt"));
     }
 
     public UUID getUuid() {
@@ -75,4 +85,5 @@ public class User {
     public void setUpdatedAt() {
         this.updatedAt = LocalDate.now();
     }
+    
 }
