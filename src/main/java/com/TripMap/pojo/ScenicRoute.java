@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import lombok.Data;
 @Data
 public class ScenicRoute {
-    ArrayList<ScenicAbstract> scenicRoute;//路线数据结构
+    ArrayList<Scenic> scenicRoute;//路线数据结构
     //String SRid;//路线id
     String name;//路线名字
 
@@ -23,12 +23,12 @@ public class ScenicRoute {
      * @param index 插入的位置，插入在index后一位，不填默认插入到最后 
      * @author wzb
      */
-    public void InsertScenic(ScenicAbstract S,Integer index){
+    public void InsertScenic(Scenic S,Integer index){
         if(index<scenicRoute.size()){
             scenicRoute.add(index, S);
         }
     }
-    public void InsertScenic(ScenicAbstract S){
+    public void InsertScenic(Scenic S){
         scenicRoute.add(S);
     }
 
@@ -39,7 +39,7 @@ public class ScenicRoute {
      * @author wzb
      */
     public void SwitchScenic(Integer first,Integer second){
-        ScenicAbstract a=scenicRoute.get(first);
+        Scenic a=scenicRoute.get(first);
         scenicRoute.set(first,scenicRoute.get(second));
         scenicRoute.set(second,a);
     }
