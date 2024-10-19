@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.TripMap.mapper.Scenicmapper;
+import com.TripMap.pojo.JsonResult;
+import com.TripMap.pojo.JsonlistResult;
 import com.TripMap.pojo.Scenic;
 import com.alibaba.fastjson.JSONObject;
 
 @RestController
-@RequestMapping("/Scenic")
+@RequestMapping("/scenic")
 public class ScenicController {
     
     /**
@@ -20,14 +22,20 @@ public class ScenicController {
      * @throws Exception 
      * 
      */
-    @RequestMapping("/foundScenic")
-    public Scenic foundScenic(@RequestBody JSONObject data) throws Exception{
+    @RequestMapping("/foundscenic")
+    public JsonResult<Scenic> foundscenic(@RequestBody JSONObject data) throws Exception{
         Scenicmapper mapper=new Scenicmapper();
-        return mapper.foundScenic(data.getString("name"));
+        return new JsonResult<Scenic>(mapper.foundScenic(data.getString("name")));
     }
-    @RequestMapping("/foundScenics")
-    public ArrayList<Scenic> foundScenics(@RequestBody JSONObject data) throws Exception{
+    @RequestMapping("/foundscenics")
+    public JsonlistResult<Scenic> foundscenics(@RequestBody JSONObject data) throws Exception{
         Scenicmapper mapper=new Scenicmapper();
-        return mapper.foundScenics(data.getString("message"),data.getString("label"));
+        return new JsonlistResult<Scenic>(mapper.foundScenics(data.getString("message"),data.getString("label")));
+    }
+
+    @RequestMapping("/datatest")
+    public String datatest(@RequestBody JSONObject data ){
+        System.out.println(data.getString("name"));
+        return "succees";
     }
 }
