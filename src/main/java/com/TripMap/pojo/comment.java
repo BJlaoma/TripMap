@@ -1,6 +1,8 @@
+
 package com.TripMap.pojo;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import org.bson.Document;
 
 public class comment {
     private Integer like;
@@ -29,6 +31,16 @@ public class comment {
         this.commentTime = LocalDateTime.now();
         this.uuid = uuid;
         this.scenic_ID = scenic_ID;
+    }
+
+    // 添加新的构造函数
+    public comment(Document doc) {
+        this.like = doc.getInteger("like");
+        this.commentID = doc.getString("commentID");
+        this.content = doc.getString("content");
+        this.commentTime = LocalDateTime.parse(doc.getString("commentTime"));
+        this.uuid = UUID.fromString(doc.getString("uuid"));
+        this.scenic_ID = doc.getString("scenic_ID");
     }
 
 

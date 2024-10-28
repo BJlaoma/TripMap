@@ -2,7 +2,7 @@
  * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
  * @Date: 2024-10-15 23:39:46
  * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-10-16 00:32:08
+ * @LastEditTime: 2024-10-28 12:24:52
  * @FilePath: \TripMap\src\main\java\com\TripMap\pojo\User.java
  */
 package com.TripMap.pojo;

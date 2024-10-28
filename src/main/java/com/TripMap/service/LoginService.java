@@ -1,10 +1,13 @@
 package com.TripMap.service;
 
+import java.net.http.HttpResponse;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.TripMap.mapper.Usermapper;
 import com.TripMap.pojo.User;
+import com.TripMap.utils.HttpUtils;
+import com.alibaba.fastjson.JSONObject;
 //用户登录
 @Service
 public class LoginService {
@@ -17,5 +20,21 @@ public class LoginService {
         User user=mapper.foundUser(name, password);
         mapper.close();
         return user;
+    }
+    /**
+     * @function 微信登录
+     * @param appid 小程序 appId
+     * @param secret 小程序 appSecret
+     * @param code 微信登录 code
+     * @return 用户对象
+     * @return JSONObject,包含openid,session_key
+     * @throws Exception
+     */
+    public JSONObject Wxlogin(String appid,String secret,String code) throws Exception{
+        String url="https://api.weixin.qq.com/sns/jscode2session";
+        String params="appid="+appid+"&secret="+secret+"&js_code="+code+"&grant_type=authorization_code";
+        HttpResponse<String> data=new HttpUtils().sendGet(url, params);
+        JSONObject json=JSONObject.parseObject(data.body());
+        return json;
     }
 }
