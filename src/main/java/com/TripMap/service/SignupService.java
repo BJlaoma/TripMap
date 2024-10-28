@@ -9,20 +9,38 @@ import com.TripMap.pojo.User;
 @Service
 public class SignupService {
     public SignupService(){}
-    public User Signup(String name,String password) throws Exception{
-        /*
-         * 询问数据库是否已经有相同名字的用户
-         */
-        Usermapper mapper=new Usermapper();
-        if(mapper.foundUser(name)){
-            throw new Exception("用户名已被使用");
+    /**
+     * @function 注册
+     * @param name 用户名
+     * @param password 密码
+     * @param avatarUrl 头像url
+     * @return 用户对象
+     * @throws Exception 
+     */
+    public User Signup(String name, String password, String avatarUrl) throws Exception {
+        Usermapper mapper = new Usermapper();
+        User user;
+        
+        try {
+            // 尝试通过openid找到用户
+            user = mapper.foundUserByOpenid(password);
+            return user;
+        } catch (Exception e) {
+            if (e.getMessage().equals("用户不存在")) {
+                // 如果用户不存在，创建新用户
+                user = new User(name, password);
+                if (avatarUrl != null && !avatarUrl.isEmpty()) {
+                    user.setAvatarUrl(avatarUrl);
+                }
+                mapper.addUser(user);
+            } else {
+                // 如果是其他异常，继续抛出
+                throw e;
+            }
+        } finally {
+            mapper.close();
         }
-        User user=new User(name, password);
-        /*
-         * 将新用户添加到数据库
-         */
-        mapper.addUser(user);
-        mapper.close();
+        
         return user;
     }
 }

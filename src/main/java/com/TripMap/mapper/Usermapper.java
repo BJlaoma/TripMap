@@ -1,3 +1,11 @@
+/*
+ * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
+ * @Date: 2024-10-16 22:24:31
+ * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
+ * @LastEditTime: 2024-10-28 14:32:17
+ * @FilePath: \TripMap\src\main\java\com\TripMap\mapper\Usermapper.java
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 package com.TripMap.mapper;
 
 import org.bson.Document;
@@ -46,8 +54,22 @@ public class Usermapper extends mapper {
         return new User(doc);
     }
 
+    /**
+     * @function 添加用户
+     * @param user 用户对象
+     * @author wzb
+     */
     public void addUser(User user){
         collection.insertOne(new UserDocument(user));
+    }
+
+    public User foundUserByOpenid(String openid) throws Exception{
+        Bson filter=Filters.eq("password",openid);
+        Document doc=collection.find(filter).first();
+        if(doc==null){
+            throw new Exception("用户不存在");
+        }
+        return new User(doc);
     }
 
     public static void main(String[] args) throws Exception {

@@ -22,8 +22,13 @@ public class comment {
         uuid = null;
     }
 
-    ;
-
+    /**
+     * @function 添加评论
+     * @param commentID 评论的用户名
+     * @param content 评论的内容
+     * @param uuid 用户唯一标识符
+     * @param scenic_ID 景点ID
+     */
     public comment(String commentID, String content, UUID uuid, String scenic_ID) {   //comment的内容如何传入看一下后面要不要改
         this.like = 0;
         this.commentID = commentID;
