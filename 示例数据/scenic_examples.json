@@ -1,0 +1,105 @@
+
+    {
+      "id": "SC001",
+      "name": "西湖",
+      "description": "西湖是位于浙江省杭州市西面的淡水湖。它是中国大陆首批国家重点风景名胜区和中国十大风景名胜之一。",
+      "location": "浙江省杭州市西湖区",
+      "latitude": "30.2587",
+      "longitude": "120.1485",
+      "contact": "+86-571-87179617",
+      "openTime": "全天开放",
+      "category": "自然景观",
+      "taglist": [
+        {"tag": "湖泊"},
+        {"tag": "文化遗产"},
+        {"tag": "免费景点"}
+      ],
+      "links": [
+        {
+          "first": "https://www.hangzhou.gov.cn/col/col1346101/",
+          "second": "官方网站"
+        },
+        {
+          "first": "https://baike.baidu.com/item/西湖/2528",
+          "second": "百科介绍"
+        }
+      ],
+      "imagesURL": [
+        "https://example.com/xihu1.jpg",
+        "https://example.com/xihu2.jpg",
+        "https://example.com/xihu3.jpg"
+      ],
+      "createdAt": "2024-01-01 08:00:00",
+      "updatedAt": "2024-03-15 14:30:00",
+      "recomendation": "建议傍晚时分前往，可以欣赏到最美的湖光山色，特别是断桥残雪的景色令人陶醉。"
+    }
+    
+    {
+      "id": "SC002",
+      "name": "故宫博物院",
+      "description": "故宫博物院是中国最大的古代宫殿建筑群，也是中国最具代表性的古建筑之一。",
+      "location": "北京市东城区景山前街4号",
+      "latitude": "39.9169",
+      "longitude": "116.3907",
+      "contact": "+86-10-85007421",
+      "openTime": "周二至周日 8:30-17:00（旺季），8:30-16:30（淡季）",
+      "category": "历史建筑",
+      "taglist": [
+        {"tag": "博物馆"},
+        {"tag": "世界遗产"},
+        {"tag": "古建筑"}
+      ],
+      "links": [
+        {
+          "first": "https://www.dpm.org.cn/",
+          "second": "故宫博物院官网"
+        },
+        {
+          "first": "https://www.dpm.org.cn/visit/ticket.html",
+          "second": "在线购票"
+        }
+      ],
+      "imagesURL": [
+        "https://example.com/gugong1.jpg",
+        "https://example.com/gugong2.jpg",
+        "https://example.com/gugong3.jpg"
+      ],
+      "createdAt": "2024-01-02 09:00:00",
+      "updatedAt": "2024-03-16 11:20:00",
+      "recomendation": "建议提前在官网预约门票，参观时间建议预留一整天，可以请专业导游讲解。"
+    }
+
+    {
+      "id": "SC003",
+      "name": "黄山",
+      "description": "黄山以奇松、怪石、云海、温泉'四绝'闻名于世，是中国十大名山之一。",
+      "location": "安徽省黄山市黄山区",
+      "latitude": "30.1333",
+      "longitude": "118.1750",
+      "contact": "+86-559-5562111",
+      "openTime": "全天开放（建议日出前进山）",
+      "category": "自然景观",
+      "taglist": [
+        {"tag": "山脉"},
+        {"tag": "世界遗产"},
+        {"tag": "摄影胜地"}
+      ],
+      "links": [
+        {
+          "first": "http://www.huangshan.com/",
+          "second": "黄山旅游官网"
+        },
+        {
+          "first": "http://www.huangshan.com/cn/ticket",
+          "second": "门票预订"
+        }
+      ],
+      "imagesURL": [
+        "https://example.com/huangshan1.jpg",
+        "https://example.com/huangshan2.jpg",
+        "https://example.com/huangshan3.jpg"
+      ],
+      "createdAt": "2024-01-03 10:00:00",
+      "updatedAt": "2024-03-17 16:45:00",
+      "recomendation": "建议住宿山顶，欣赏日出日落，避开节假日人流高峰，准备适合登山的装备。"
+    }

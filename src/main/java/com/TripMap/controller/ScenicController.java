@@ -1,3 +1,4 @@
+
 package com.TripMap.controller;
 
 import java.util.ArrayList;
@@ -31,6 +32,11 @@ public class ScenicController {
     public JsonlistResult<Scenic> foundscenics(@RequestBody JSONObject data) throws Exception{
         Scenicmapper mapper=new Scenicmapper();
         return new JsonlistResult<Scenic>(mapper.foundScenics(data.getString("message"),data.getString("label")));
+    }
+    @RequestMapping("/getscenices")
+    public JsonlistResult<Scenic> getscenices() throws Exception{
+        Scenicmapper mapper=new Scenicmapper();
+        return new JsonlistResult<Scenic>(mapper.getScenices());
     }
 
     @RequestMapping("/datatest")

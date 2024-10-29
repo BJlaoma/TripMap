@@ -2,7 +2,7 @@
  * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
  * @Date: 2024-10-17 19:57:25
  * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-10-28 14:34:32
+ * @LastEditTime: 2024-10-29 13:40:11
  * @FilePath: \TripMap\src\main\java\com\TripMap\controller\UserController.java
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -51,7 +51,7 @@ public class UserController {
     @RequestMapping("/wxlogin")
     public JsonResult<JSONObject> Wxlogin(@RequestBody JSONObject data) throws Exception{
         LoginService s=new LoginService();
-        JSONObject json=s.Wxlogin(data.getString("appid"), data.getString("secret"), data.getString("code"));
+        JSONObject json=s.Wxlogin( "wx39efc4783f761db1", "24eaf3fd01e92b853c546514c3a02a9f", data.getString("code"));
         //User user=new User(data.getString("name"),json.getString("openid"));
         //user.setAvatarUrl(data.getString("avatarUrl"));
         //Usermapper mapper=new Usermapper();

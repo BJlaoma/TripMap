@@ -1,3 +1,11 @@
+/*
+ * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
+ * @Date: 2024-10-19 21:03:02
+ * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
+ * @LastEditTime: 2024-10-29 19:21:30
+ * @FilePath: \TripMap\src\main\java\com\TripMap\mapper\Scenicmapper.java
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 package com.TripMap.mapper;
 
 import java.util.ArrayList;
@@ -43,6 +51,21 @@ public class Scenicmapper extends mapper{
     public ArrayList<Scenic> foundScenics(String massage,String label){
         Bson labelfilter=Filters.regex(label, massage);
         FindIterable<Document> result=collection.find(labelfilter);
+        ArrayList<Scenic> array=new ArrayList<>();
+        if(result.first()!=null){
+            for(Document doc : result){
+                array.add(new Scenic(doc));
+            }
+        }
+        return array;
+    }
+
+    /**
+     * @function 获取所有景点
+     * @return ArrayList<Scenic>
+     */
+    public ArrayList<Scenic> getScenices(){
+        FindIterable<Document> result=collection.find();
         ArrayList<Scenic> array=new ArrayList<>();
         if(result.first()!=null){
             for(Document doc : result){

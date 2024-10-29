@@ -80,4 +80,10 @@ public class Usermapper extends mapper {
         System.out.println(map.foundUser("2"));
         System.out.println(map.foundUser("2", "2").toString());
     }
+
+    public User getUserByUUID(String uuid) {
+        Bson filter=Filters.eq("uuid",uuid);
+        Document doc=collection.find(filter).first();
+        return new User(doc);
+    }
 }

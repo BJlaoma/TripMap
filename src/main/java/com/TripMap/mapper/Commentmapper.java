@@ -6,6 +6,8 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.TripMap.pojo.comment;
+import com.TripMap.pojo.reply;
+import com.mongodb.client.model.Updates;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +81,29 @@ public class Commentmapper extends mapper {
     public void updateLike(String commentID) {
         Bson filter = Filters.eq("commentID", commentID);
         Bson update = new Document("$inc", new Document("like", 1));
+        collection.updateOne(filter, update);
+    }
+    /**
+     * @function 在评论下面添加回复
+     * @param commentID 评论ID
+     * @param reply 回复对象
+     * @throws Exception
+     */
+    public void addReply(String commentID, reply reply) throws Exception {
+        // 创建filter
+        Bson filter = Filters.eq("commentID", commentID);
+        
+        // 创建update文档
+        Document replyDoc = new Document()
+            .append("name", reply.getName())
+            .append("avatarUrl", reply.getAvatarUrl())
+            .append("content", reply.getContent())
+            .append("replyTime", reply.getReplyTime().toString());
+        
+        // 使用$addToSet操作符将reply添加到replies数组
+        Bson update = new Document("$addToSet", new Document("replies", replyDoc));
+        
+        // 执行更新操作
         collection.updateOne(filter, update);
     }
 
