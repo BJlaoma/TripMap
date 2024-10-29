@@ -1,16 +1,34 @@
-/*
- * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
- * @Date: 2024-10-12 17:49:46
- * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-10-12 17:49:50
- * @FilePath: \TrapMap\src\main\java\com\TrapMap\service\SearchTag.java
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 package com.TripMap.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-//筛选查找
+import com.TripMap.mapper.ScenicMapper; // 假设有一个 ScenicMapper 接口用于数据库操作
+import com.TripMap.pojo.Scenic; // 假设有一个 Scenic 类表示景点信息
+import com.TripMap.pojo.Tag; // 假设有一个 Tag 类表示标签
+
+import java.util.List;
+
 @Service
 public class SearchTagService {
 
+    // 自动注入 ScenicMapper
+    @Autowired
+    private ScenicMapper scenicMapper;
+
+    /**
+     * 根据标签搜索景点
+     * @param tag 要搜索的标签
+     * @return 匹配该标签的景点列表
+     */
+    public List<Scenic> searchScenicsByTag(Tag tag) {
+        return scenicMapper.findScenicsByTag(tag);
+    }
+
+    /**
+     * 获取所有可用的标签列表
+     * @return 所有标签的列表
+     */
+    public List<Tag> getAllTags() {
+        return scenicMapper.findAllTags();
+    }
 }

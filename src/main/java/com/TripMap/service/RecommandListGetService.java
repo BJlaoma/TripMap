@@ -1,16 +1,34 @@
-/*
- * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
- * @Date: 2024-10-12 17:50:00
- * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-10-12 17:50:03
- * @FilePath: \TrapMap\src\main\java\com\TrapMap\service\RecommandListGet.java
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 package com.TripMap.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-//推荐景点列表获取
+import com.TripMap.mapper.ScenicMapper; // 假设有一个 ScenicMapper 接口用于数据库操作
+import com.TripMap.pojo.Scenic; // 假设有一个 Scenic 类表示景点信息
+
+import java.util.List;
+
 @Service
 public class RecommandListGetService {
 
+    // 自动注入 ScenicMapper
+    @Autowired
+    private ScenicMapper scenicMapper;
+
+    /**
+     * 获取推荐景点列表
+     * @return 推荐景点的列表
+     */
+    public List<Scenic> getRecommandList() {
+        return scenicMapper.findRecommandScenics();
+    }
+
+    /**
+     * 根据特定条件获取推荐景点列表，例如基于用户的偏好或热门景点
+     * @param criteria 搜索条件，可以是用户偏好、评分、距离等
+     * @return 根据条件筛选后的推荐景点列表
+     */
+    public List<Scenic> getRecommandListByCriteria(String criteria) {
+        // 这里只是一个示例，具体的实现将取决于你的业务逻辑和数据库设计
+        return scenicMapper.findRecommandScenicsByCriteria(criteria);
+    }
 }
