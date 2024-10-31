@@ -2,7 +2,7 @@
  * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
  * @Date: 2024-10-16 22:24:31
  * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-10-28 14:32:17
+ * @LastEditTime: 2024-10-31 17:15:16
  * @FilePath: \TripMap\src\main\java\com\TripMap\mapper\Usermapper.java
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,8 +16,10 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.TripMap.pojo.User;
 import com.TripMap.pojo.UserDocument;
+import com.alibaba.fastjson.JSONObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import java.time.LocalDate;
 
 public class Usermapper extends mapper {
     MongoCollection<Document> collection;
@@ -71,7 +73,26 @@ public class Usermapper extends mapper {
         }
         return new User(doc);
     }
+    /**
+     * @function 更新用户,弃用
+     * @param user 用户对象
+     * @author wzb
+     */
+    public void updateUser(User user) throws Exception{
+        Bson filter=Filters.eq("uuid",user.getUuid());
+        collection.updateOne(filter, new UserDocument("$set",user));
+        System.out.println("更新成功");
+    }
 
+    public void updateAvatarUrl(String uuid,String avatarUrl) throws Exception{
+        Bson filter=Filters.eq("uuid",uuid);
+        collection.updateOne(filter, new Document("$set",new Document("avatarUrl",avatarUrl).append("updatedAt",LocalDate.now().toString())));
+    }
+
+    public void updateName(String uuid,String name) throws Exception{
+        Bson filter=Filters.eq("uuid",uuid);
+        collection.updateOne(filter, new Document("$set",new Document("name",name).append("updatedAt",LocalDate.now().toString())));
+    }
     public static void main(String[] args) throws Exception {
         User user=new User("2", "2");
         Usermapper map=new Usermapper();
@@ -86,4 +107,5 @@ public class Usermapper extends mapper {
         Document doc=collection.find(filter).first();
         return new User(doc);
     }
+
 }

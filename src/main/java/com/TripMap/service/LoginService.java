@@ -1,13 +1,27 @@
+/*
+ * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
+ * @Date: 2024-10-12 17:05:53
+ * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
+ * @LastEditTime: 2024-10-31 14:41:34
+ * @FilePath: \TripMap\src\main\java\com\TripMap\service\LoginService.java
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 package com.TripMap.service;
 
 import java.net.http.HttpResponse;
 import java.util.UUID;
-import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import org.springframework.stereotype.Service;
+import java.awt.Image;
 import com.TripMap.mapper.Usermapper;
 import com.TripMap.pojo.User;
 import com.TripMap.utils.HttpUtils;
 import com.alibaba.fastjson.JSONObject;
+import com.TripMap.utils.SaveImageUtil;
 //用户登录
 @Service
 public class LoginService {
@@ -37,4 +51,6 @@ public class LoginService {
         JSONObject json=JSONObject.parseObject(data.body());
         return json;
     }
+
+
 }
