@@ -26,7 +26,7 @@ public class Userservice {
             // 生成唯一的文件名
             String fileName = uuid + "_" + System.currentTimeMillis() + ".png";
             // 使用绝对路径
-            String uploadDir = "/root/code/tripmap.Repo/src/main/resources/static/avatar";
+            String uploadDir = "/root/code/tripmap.Repo/src/main/resources/static/avatar/";
             //String uploadDir = "C:/Users/15017/Desktop/JAVA/项目想法/TripMap/TrapMap/TripMap/src/main/resources/static/avatar/";
             String fullPath = uploadDir + fileName;
             
