@@ -1,3 +1,4 @@
+
 package com.TripMap.service;
 
 import com.TripMap.mapper.Usermapper;
@@ -25,7 +26,8 @@ public class Userservice {
             // 生成唯一的文件名
             String fileName = uuid + "_" + System.currentTimeMillis() + ".png";
             // 使用绝对路径
-            String uploadDir = "C:/Users/15017/Desktop/JAVA/项目想法/TripMap/TrapMap/TripMap/src/main/resources/static/";
+            String uploadDir = "/root/code/tripmap.Repo/src/main/resources/static/avatar";
+            //String uploadDir = "C:/Users/15017/Desktop/JAVA/项目想法/TripMap/TrapMap/TripMap/src/main/resources/static/avatar/";
             String fullPath = uploadDir + fileName;
             
             // 确保目录存在
@@ -35,7 +37,8 @@ public class Userservice {
             SaveImageUtil.saveImageToFile(bufferedImage, fullPath);
             
             // 构建访问URL
-            String url = "http://localhost:8080/" + fileName;  // 这里需要根据你的web服务器配置调整
+            String url = "http://8.138.145.205:8081/avatar/" + fileName;  
+            //String url = "http://127.0.0.1:8080/avatar/" + fileName;  
             result.put("url", url);
             result.put("uuid", uuid);
             // 更新用户头像URL

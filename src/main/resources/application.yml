@@ -5,6 +5,16 @@ spring:
     username: visitor
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+        - classpath:/public/
+        - classpath:/resources/
+        - classpath:/META-INF/resources/
+        - file:C:/Users/15017/Desktop/JAVA/项目想法/TripMap/TrapMap/TripMap/src/main/resources/avatar/
+  mvc:
+    static-path-pattern: /**
     
 jdbc:
   driverClassName: com.mysql.jdbc.Driver
