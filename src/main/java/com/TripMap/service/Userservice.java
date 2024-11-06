@@ -1,6 +1,7 @@
 
 package com.TripMap.service;
 
+import com.TripMap.mapper.Favorsmapper;
 import com.TripMap.mapper.Usermapper;
 import com.TripMap.utils.SaveImageUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -10,7 +11,8 @@ import java.io.File;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.TripMap.pojo.User;    
+import com.TripMap.pojo.User;
+import com.TripMap.pojo.Userfavors;    
 
 public class Userservice {
     /**
@@ -86,4 +88,25 @@ public class Userservice {
         // 更新数据库
         return mapper.getUserByUUID(uuid);
     }
+    public Userfavors getUserfavors(String uuid) throws Exception{
+        Favorsmapper mapper = new Favorsmapper();
+        return mapper.getUserfavors(uuid);
+    }
+    public void updateScenicID(String uuid,String id) throws Exception{
+        Favorsmapper mapper = new Favorsmapper();
+        mapper.updateScenicID(uuid, id);
+    }
+    public String insertScenicID(String uuid,String id) throws Exception{
+        Favorsmapper mapper = new Favorsmapper();
+        if(mapper.isExist(uuid, id)){
+            return "收藏已经存在";
+        }
+        mapper.insertScenicID(uuid, id);   
+        return "收藏添加成功";
+    }
+    public void deleteScenicID(String uuid,String id) throws Exception{
+        Favorsmapper mapper = new Favorsmapper();
+        mapper.deleteScenicID(uuid, id);
+    }
+
 }

@@ -2,7 +2,7 @@
  * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
  * @Date: 2024-10-17 19:57:25
  * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-10-31 16:02:41
+ * @LastEditTime: 2024-11-06 16:52:34
  * @FilePath: \TripMap\src\main\java\com\TripMap\controller\UserController.java
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.TripMap.pojo.JsonResult;
 import com.TripMap.pojo.User;
+import com.TripMap.pojo.Userfavors;
 import com.TripMap.service.LoginService;
 import com.TripMap.service.SignupService;
 import com.TripMap.service.Userservice;
@@ -111,6 +112,56 @@ public class UserController {
         Usermapper mapper=new Usermapper();
         User user=mapper.getUserByUUID(uuid);
         return new JsonResult<User>(user);
+    }
+    /**
+     * @function 获取用户收藏
+     * @param data 包含uuid
+     * @return Userfavors对象
+     * @throws Exception
+     */
+    @RequestMapping("/getuserfavors")
+    public JsonResult<Userfavors> GetUserfavors(@RequestBody JSONObject data) throws Exception{
+        Userservice s=new Userservice();
+        Userfavors userfavors=s.getUserfavors(data.getString("uuid"));
+        return new JsonResult<Userfavors>(userfavors);
+    }
+
+    /**
+     * @function 添加收藏
+     * @param data 包含uuid,id
+     * @return JSONObject
+     * @throws Exception
+     */
+
+    @RequestMapping("/insertfavor")
+    public JsonResult<JSONObject> InsertScenicID(@RequestBody JSONObject data) throws Exception{
+        Userservice s=new Userservice();
+        String msg=s.insertScenicID(data.getString("uuid"), data.getString("id"));
+        return new JsonResult<JSONObject>(200,msg);
+    }
+    /**
+     * @function 删除收藏
+     * @param data 包含uuid,id
+     * @return JSONObject
+     * @throws Exception
+     */
+    @RequestMapping("/deletefavor")
+    public JsonResult<JSONObject> DeleteScenicID(@RequestBody JSONObject data) throws Exception{
+        Userservice s=new Userservice();
+        s.deleteScenicID(data.getString("uuid"), data.getString("id"));
+        return new JsonResult<JSONObject>(null);
+    }
+    /**
+     * @function 更新收藏
+     * @param data 包含uuid,id
+     * @return JSONObject
+     * @throws Exception
+     */
+    @RequestMapping("/updatefavor")
+    public JsonResult<JSONObject> UpdateScenicID(@RequestBody JSONObject data) throws Exception{
+        Userservice s=new Userservice();
+        s.updateScenicID(data.getString("uuid"), data.getString("id"));
+        return new JsonResult<JSONObject>(null);
     }
 }
 
