@@ -1,10 +1,13 @@
+
 package com.TripMap.service;
 
 import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 import com.TripMap.mapper.Usermapper;
+import com.TripMap.mapper.Favorsmapper;
 import com.TripMap.pojo.User;
+import com.TripMap.pojo.Userfavors;
 //注册
 @Service
 public class SignupService {
@@ -19,6 +22,7 @@ public class SignupService {
      */
     public User Signup(String name, String password, String avatarUrl) throws Exception {
         Usermapper mapper = new Usermapper();
+        Favorsmapper favorsmapper=new Favorsmapper();
         User user;
         
         try {
@@ -29,10 +33,12 @@ public class SignupService {
             if (e.getMessage().equals("用户不存在")) {
                 // 如果用户不存在，创建新用户
                 user = new User(name, password);
+                Userfavors userfavors=new Userfavors(user.getUuid().toString());
                 if (avatarUrl != null && !avatarUrl.isEmpty()) {
                     user.setAvatarUrl(avatarUrl);
                 }
                 mapper.addUser(user);
+                favorsmapper.insertUserfavors(userfavors);
             } else {
                 // 如果是其他异常，继续抛出
                 throw e;
