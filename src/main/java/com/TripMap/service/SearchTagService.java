@@ -2,7 +2,7 @@ package com.TripMap.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.TripMap.mapper.ScenicMapper; // 假设有一个 ScenicMapper 接口用于数据库操作
+import com.TripMap.mapper.Scenicmapper; // 假设有一个 ScenicMapper 接口用于数据库操作
 import com.TripMap.pojo.Scenic; // 假设有一个 Scenic 类表示景点信息
 import com.TripMap.pojo.Tag; // 假设有一个 Tag 类表示标签
 
@@ -13,7 +13,7 @@ public class SearchTagService {
 
     // 自动注入 ScenicMapper
     @Autowired
-    private ScenicMapper scenicMapper;
+    private Scenicmapper scenicMapper;
 
     /**
      * 根据标签搜索景点

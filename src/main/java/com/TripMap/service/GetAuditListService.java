@@ -11,6 +11,7 @@ package com.TripMap.service;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.TripMap.pojo.AuditItem; // 假设有一个 AuditItem 类来表示待审核项
+import com.TripMap.mapper.AuditMapper;
 
 // 获取等待审核清单
 @Service
@@ -30,16 +31,5 @@ public class GetAuditListService {
     }
 }
 
-// 假设的 AuditMapper 接口，用于数据库操作
-interface AuditMapper {
-    List<AuditItem> findAllPendingAudits();
-}
 
-// 假设的 AuditItem 类，表示一个待审核项
-class AuditItem {
-    private String id;
-    private String content;
-    private String status;
 
-    // 构造函数、getter 和 setter 省略
-}

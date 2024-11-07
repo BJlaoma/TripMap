@@ -5,6 +5,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 
 import lombok.Data;
+
 @Data
 public class mapper {
     static String mongoURL="mongodb://localhost:27017";

@@ -2,7 +2,7 @@ package com.TripMap.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.TripMap.mapper.UserMapper; // 假设有一个 UserMapper 接口用于数据库操作
+import com.TripMap.mapper.Usermapper; // 假设有一个 UserMapper 接口用于数据库操作
 import com.TripMap.pojo.User; // 假设有一个 User 类表示用户
 
 @Service
@@ -10,7 +10,7 @@ public class ManagerLoginService {
 
     // 自动注入 UserMapper
     @Autowired
-    private UserMapper userMapper;
+    private Usermapper userMapper;
 
     /**
      * 管理员登录
@@ -21,7 +21,7 @@ public class ManagerLoginService {
     public User login(String name, String password) {
         // 使用 UserMapper 来检查用户名和密码是否正确
         User user = userMapper.findUserByNameAndPassword(name, password);
-        if (user != null && user.isManager()) {
+        if (user != null ) {
             // 如果用户是管理员，返回用户对象
             return user;
         } else {

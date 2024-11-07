@@ -1,61 +1,61 @@
 package com.TripMap.mapper;
 
+import com.TripMap.pojo.User;
 import org.bson.Document;
-import org.bson.conversions.Bson;
-import com.mongodb.client.model.Filters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Repository;
 
-import com.TripMap.pojo.User;
-import com.TripMap.pojo.UserDocument;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
+@Repository
+public class Usermapper {
 
-public class Usermapper extends mapper {
-    MongoCollection<Document> collection;
-
-    public Usermapper(){
-        super();
-        collection=super.getDatabase().getCollection("user");
-    }
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     /**
+     * 查找是否有此用户
      * @param name 用户姓名
-     * @function 查找是否有此user
      * @return boolean
-     * @auther wzb
      */
-    public boolean foundUser(String name){
-        Bson filter=Filters.eq("name",name);
-        FindIterable<Document> doc=collection.find(filter);
-        return doc.iterator().hasNext();//如果有下一个文档，返回 true；否则返回 false
+    public boolean foundUser(String name) {
+        Query query = new Query(Criteria.where("name").is(name));
+        return mongoTemplate.count(query, User.class) > 0;
     }
 
     /**
-     * @function 通过用户密码来获取用户的所有信息
+     * 通过用户名和密码来获取用户的所有信息
+     * @param name 用户名
+     * @param password 密码
      * @return User
-     * @author wzb
+     * @throws Exception 如果用户不存在
      */
-    public User foundUser(String name,String password) throws Exception{
-        Bson filter=Filters.and(Filters.eq("name",name),Filters.eq("password",password));
-        Document doc=collection.find(filter).first();
-
-        if(doc==null){
+    public User foundUser(String name, String password) throws Exception {
+        Query query = new Query(Criteria.where("name").is(name).and("password").is(password));
+        User user = mongoTemplate.findOne(query, User.class);
+        if (user == null) {
             throw new Exception("登录失败，账号或者密码错误");
         }
-        return new User(doc);
+        return user;
     }
 
-    public void addUser(User user){
-        collection.insertOne(new UserDocument(user));
+    /**
+     * 根据用户名和密码查找用户
+     * @param name 用户名
+     * @param password 密码
+     * @return User
+     */
+    public User findUserByNameAndPassword(String name, String password) {
+        Query query = new Query(Criteria.where("name").is(name).and("password").is(password));
+        return mongoTemplate.findOne(query, User.class);
     }
 
-    public static void main(String[] args) throws Exception {
-        User user=new User("2", "2");
-        Usermapper map=new Usermapper();
-    //    map.addUser(user);
-        System.out.println("添加成功");
-        System.out.println(map.foundUser("2"));
-        System.out.println(map.foundUser("2", "2").toString());
+    /**
+     * 添加用户
+     * @param user 用户对象
+     */
+    public void addUser(User user) {
+        mongoTemplate.insert(user, "user");
     }
 }
