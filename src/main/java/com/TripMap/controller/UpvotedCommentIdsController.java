@@ -1,7 +1,7 @@
 package com.TripMap.controller;
 import java.util.ArrayList;
-import org.json.JSONObject;
-import org.json.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONArray;
 import com.TripMap.pojo.*;
 import com.TripMap.service.PostUpvotedCommentIdsService;
 import com.TripMap.service.SignupService;
@@ -10,10 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.TripMap.mapper.UpvotedCommentIdsmapper;
 
-import com.TripMap.pojo.UpvotedCommentIds;
-
 @RestController
-@RequestMapping("/user/{userId}/upvotedCommentIds")
+@RequestMapping("/user/upvotedCommentIds")
 public class UpvotedCommentIdsController {
 
 
@@ -22,22 +20,24 @@ public class UpvotedCommentIdsController {
     private   PostUpvotedCommentIdsService  p;
 
     @GetMapping()
-    public JsonResult<ArrayList<String>> getListByUuid(@RequestParam("userId") String uuid) throws Exception{
-
+    public JsonlistResult<String> getListByUuid(@RequestParam("userId") String uuid) throws Exception{
+        map=new UpvotedCommentIdsmapper();
         ArrayList<String>upCommentIds=map.getByUuid(uuid).getCommentIds();
-        return new JsonResult<ArrayList<String>>(upCommentIds);
+        return new JsonlistResult<String>(upCommentIds);
     }
 
 
 
 
     @PostMapping()
-    public JsonResult<String> postList(@RequestParam("userId") String uuid,@RequestBody JSONArray data) throws Exception{
+    public JsonResult<String> postList(@RequestParam("userId") String uuid,@RequestBody JSONObject json) throws Exception{
         ArrayList<String>array=new ArrayList<>();
-        for (int i = 0; i <data.length(); i++) {
+        
+        JSONArray data=json.getJSONArray("data");
+        for (int i = 0; i <data.size(); i++) {
             array.add(data.getString(i));
         }
-        p.post(uuid,array);
+        p=new PostUpvotedCommentIdsService();
         return new JsonResult<String>(p.post(uuid,array));
     }
 

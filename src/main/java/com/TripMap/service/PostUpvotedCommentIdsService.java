@@ -13,8 +13,7 @@ import com.TripMap.pojo.UpvotedCommentIds;
 public class PostUpvotedCommentIdsService
 {
 
-    private  UpvotedCommentIdsmapper map;
-
+    private  UpvotedCommentIdsmapper map=new UpvotedCommentIdsmapper();
     public String post(String uuid,ArrayList<String>array)
     {
         if( map.findByUuid(uuid))

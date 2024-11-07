@@ -24,6 +24,11 @@ public class UpvotedCommentIds {
     }
     public UpvotedCommentIds(Document doc){
         this.uuid=doc.getString("uuid");
-        this.CommentIds=new ArrayList<>(doc.getList("upvotedCommentIds",String.class));
+        this.CommentIds=new ArrayList<>();
+        if(doc.get("commentIds")!=null){ 
+            for(String commentId:doc.getList("commentIds",String.class)){
+                this.CommentIds.add(commentId);
+            }
+        }
     }
 }
