@@ -74,4 +74,25 @@ public class Scenicmapper extends mapper{
         }
         return array;
     }
+
+    public ArrayList<Scenic> getScenicByMessage(String Province,String city,String category){
+        String address=null;
+        if(!Province.equals(city)){
+           address=Province+city;
+        }else {
+            address=Province;
+        }
+        Bson filter=Filters.regex("location",address);
+        if(category!=null){
+            filter=Filters.and(filter,Filters.eq("category",category));
+        }
+        FindIterable<Document> result=collection.find(filter);
+        ArrayList<Scenic> array=new ArrayList<>();
+        if(result.first()!=null){
+            for(Document doc : result){
+                array.add(new Scenic(doc));
+            }
+        }
+        return array;
+    }
 }

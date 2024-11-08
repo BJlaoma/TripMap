@@ -2,7 +2,7 @@
 package com.TripMap.controller;
 
 import java.util.ArrayList;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +37,12 @@ public class ScenicController {
     public JsonlistResult<Scenic> getscenices() throws Exception{
         Scenicmapper mapper=new Scenicmapper();
         return new JsonlistResult<Scenic>(mapper.getScenices());
+    }
+
+    @PostMapping("/getscenicByMessage")
+    public JsonlistResult<Scenic> getscenicByMessage(@RequestBody JSONObject data) throws Exception{
+        Scenicmapper mapper=new Scenicmapper();
+        return new JsonlistResult<Scenic>(mapper.getScenicByMessage(data.getString("Province"),data.getString("City"),data.getString("category")));
     }
 
     @RequestMapping("/datatest")
