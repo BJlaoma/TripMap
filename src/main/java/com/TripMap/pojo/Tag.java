@@ -1,11 +1,4 @@
-/*
- * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
- * @Date: 2024-10-17 19:57:25
- * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-10-29 19:40:22
- * @FilePath: \TripMap\src\main\java\com\TripMap\pojo\Tag.java
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
+
 package com.TripMap.pojo;
 
 public enum Tag {
@@ -35,5 +28,14 @@ public enum Tag {
             }
         }
         throw new IllegalArgumentException("No constant with label " + label + " found");
+    }
+    // 根据标签获取对应的枚举常量
+    public static Tag fromLabel(String label) {
+        for (Tag tag : Tag.values()) {
+            if (tag.getLabel().equals(label)) {
+                return tag;
+            }
+        }
+        throw new IllegalArgumentException("没有找到对应的标签: " + label);
     }
 }
