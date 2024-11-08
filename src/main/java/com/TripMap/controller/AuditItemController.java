@@ -50,4 +50,22 @@ public class AuditItemController {
         GetAuditListService service = new GetAuditListService();
         return new JsonlistResult<AuditItem>(service.getAuditItemByJudge("pass"));
     }
+
+    @GetMapping("/getUnjudgedAuditItem")
+    public JsonlistResult<AuditItem> getUnjudgedAuditItem(){
+        GetAuditListService service = new GetAuditListService();
+        return new JsonlistResult<AuditItem>(service.getAuditItemByJudge("unjudged"));
+    }
+    @PostMapping("/judge/pass")
+    public JsonResult<String> passAuditItem(@RequestParam("auditItemId") String auditItemId){
+        GetAuditListService service = new GetAuditListService();
+        service.updateAuditJudge(auditItemId, "pass");
+        return new JsonResult<String>("success");
+    }
+    @PostMapping("/judge/refused")
+    public JsonResult<String> refusedAuditItem(@RequestParam("auditItemId") String auditItemId){
+        GetAuditListService service = new GetAuditListService();
+        service.updateAuditJudge(auditItemId, "refused");
+        return new JsonResult<String>("success");
+    }
 }

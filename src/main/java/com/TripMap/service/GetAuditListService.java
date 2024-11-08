@@ -76,6 +76,10 @@ public class GetAuditListService {
             throw new Exception("保存图片失败：" + e.getMessage());
         }
     }
+    public void updateAuditJudge(String auditItemId,String judge){
+        auditMapper=new AuditMapper();
+        auditMapper.updateAuditJudge(auditItemId, judge);
+    }
 }
 
 
