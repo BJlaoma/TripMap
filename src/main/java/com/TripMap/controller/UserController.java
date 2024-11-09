@@ -163,5 +163,11 @@ public class UserController {
         s.updateScenicID(data.getString("uuid"), data.getString("id"));
         return new JsonResult<JSONObject>(null);
     }
+    @RequestMapping("/getusercount")
+    public JsonResult<Integer> GetUserCount() throws Exception{
+        Usermapper mapper=new Usermapper();
+        int count=mapper.getUserCount();
+        return new JsonResult<Integer>(count);
+    }
 }
 

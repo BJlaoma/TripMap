@@ -1,13 +1,7 @@
-/*
- * @Author: WZB 150590206+BJlaoma@users.noreply.github.com
- * @Date: 2024-10-12 19:22:18
- * @LastEditors: WZB 150590206+BJlaoma@users.noreply.github.com
- * @LastEditTime: 2024-10-12 19:22:21
- * @FilePath: \TrapMap\src\main\java\com\TripMap\Interceptor\MyInterceptor.java
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 package com.TripMap.Interceptor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,19 +9,38 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class MyInterceptor implements HandlerInterceptor {
+    private static final Logger logger = LoggerFactory.getLogger(MyInterceptor.class);
+    private static long totalVisits = 0;
+    
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // 在请求处理之前执行
-        return true; // 返回 true 继续处理，返回 false 中断请求
+        synchronized (this) {
+            totalVisits++;
+        }
+        
+        String clientIP = request.getRemoteAddr();
+        String requestURI = request.getRequestURI();
+        String method = request.getMethod();
+        
+        logger.info("访问信息 - IP: {}, 方法: {}, 路径: {}, 总访问次数: {}", 
+                    clientIP, method, requestURI, totalVisits);
+        
+        return true;
+    }
+
+    public static long getTotalVisits() {
+        return totalVisits;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        // 在请求处理之后执行
+        logger.debug("请求处理完成: {}", request.getRequestURI());
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        // 在整个请求完成之后执行
+        if (ex != null) {
+            logger.error("请求处理发生错误: {}", ex.getMessage());
+        }
     }
 }

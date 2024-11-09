@@ -8,11 +8,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.TripMap.Interceptor.MyInterceptor;
 
 @Configuration
-public class MvcConfig implements WebMvcConfigurer{
+public class MvcConfig implements WebMvcConfigurer {
     
     //注册拦截器
     @Bean
-    public MyInterceptor myinterceptor(){
+    public MyInterceptor myinterceptor() {
         return new MyInterceptor();
     }
 
@@ -20,6 +20,8 @@ public class MvcConfig implements WebMvcConfigurer{
     //添加拦截器到mvc拦截器链
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(myinterceptor()).addPathPatterns("/*");
-   }
+        registry.addInterceptor(myinterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns("/static/**");
+    }
 }

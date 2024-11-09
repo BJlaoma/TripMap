@@ -108,4 +108,7 @@ public class Usermapper extends mapper {
         return new User(doc);
     }
 
+    public int getUserCount(){
+        return (int) collection.countDocuments();
+    }
 }
