@@ -20,20 +20,20 @@ public class SignupService {
      * @return 用户对象
      * @throws Exception 
      */
-    public User Signup(String name, String password, String avatarUrl) throws Exception {
+    public User Signup(String name, String password, String avatarUrl,String uuid) throws Exception {
         Usermapper mapper = new Usermapper();
         Favorsmapper favorsmapper=new Favorsmapper();
         User user;
         
         try {
-            // 尝试通过openid找到用户
-            user = mapper.foundUserByOpenid(password);
+            // 尝试通过openid(uuid)找到用户
+            user = mapper.foundUserByOpenid(uuid);
             return user;
         } catch (Exception e) {
             if (e.getMessage().equals("用户不存在")) {
                 // 如果用户不存在，创建新用户
-                user = new User(name, password);
-                Userfavors userfavors=new Userfavors(user.getUuid().toString());
+                user = new User(uuid);
+                Userfavors userfavors=new Userfavors(user.getUuid());
                 if (avatarUrl != null && !avatarUrl.isEmpty()) {
                     user.setAvatarUrl(avatarUrl);
                 }

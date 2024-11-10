@@ -15,7 +15,7 @@ public class comment {
     private String commentID;//评论序号
     private String content;    //评论的内容
     private LocalDateTime commentTime;
-    private UUID uuid;//用户唯一标识符
+    private String uuid;//用户唯一标识符
     private String scenic_ID;
     private String avatarUrl; //头像url
     private String name; //用户名
@@ -27,7 +27,7 @@ public class comment {
         content = "";
         commentTime = null;
         scenic_ID = "";
-        uuid = null;
+        uuid = "";
         avatarUrl = "";
         name = "";
         rating = "";
@@ -46,7 +46,7 @@ public class comment {
         this.commentID = commentID;
         this.content = content;
         this.commentTime = LocalDateTime.now();
-        this.uuid = uuid;
+        this.uuid = uuid.toString();
         this.scenic_ID = scenic_ID;
         this.avatarUrl = "";
         this.name = "";
@@ -60,7 +60,7 @@ public class comment {
         this.commentID = doc.getString("commentID");
         this.content = doc.getString("content");
         this.commentTime = LocalDateTime.parse(doc.getString("commentTime"));
-        this.uuid = UUID.fromString(doc.getString("uuid"));
+        this.uuid = doc.getString("uuid");
         this.scenic_ID = doc.getString("scenic_ID");
         this.avatarUrl = doc.getString("avatarUrl");
         this.name = doc.getString("name");
@@ -79,7 +79,7 @@ public class comment {
      * @param rating 评分
      */
     public comment(String uuid,String content,String scenic_ID,String rating){
-        this.uuid = UUID.fromString(uuid);
+        this.uuid = uuid;
         this.content = content;
         this.scenic_ID = scenic_ID;
         this.rating = rating;
@@ -93,11 +93,11 @@ public class comment {
         this.replies = new ArrayList<>();
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

@@ -66,7 +66,7 @@ public class Usermapper extends mapper {
     }
 
     public User foundUserByOpenid(String openid) throws Exception{
-        Bson filter=Filters.eq("password",openid);
+        Bson filter=Filters.eq("uuid",openid);
         Document doc=collection.find(filter).first();
         if(doc==null){
             throw new Exception("用户不存在");
@@ -93,6 +93,7 @@ public class Usermapper extends mapper {
         Bson filter=Filters.eq("uuid",uuid);
         collection.updateOne(filter, new Document("$set",new Document("name",name).append("updatedAt",LocalDate.now().toString())));
     }
+
     public static void main(String[] args) throws Exception {
         User user=new User("2", "2");
         Usermapper map=new Usermapper();

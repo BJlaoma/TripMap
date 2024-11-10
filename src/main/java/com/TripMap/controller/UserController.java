@@ -30,7 +30,7 @@ public class UserController {
     @RequestMapping("/signup")
     public JsonResult<User> Signup(@RequestBody JSONObject data) throws Exception{
         SignupService s=new SignupService();
-        User user=s.Signup(data.getString("name"),data.getString("password"),data.getString("avatarUrl"));
+        User user=s.Signup(data.getString("name"),data.getString("password"),data.getString("avatarUrl"),data.getString("openid"));
         return new JsonResult<User>(user);
     }
 
@@ -46,6 +46,12 @@ public class UserController {
         System.out.println(data.getString("name"));
         return "succees";
     }
+    @RequestMapping("/testlogin")
+    public JsonResult<User> testlogin(@RequestBody JSONObject data) throws Exception{
+        SignupService s=new SignupService();
+        User user=s.Signup("", "", "", data.getString("openid"));
+        return new JsonResult<User>(user);
+    }
     /**
      * @function 微信登录
      * @param data 包含appid,secret,code
@@ -56,6 +62,8 @@ public class UserController {
     public JsonResult<JSONObject> Wxlogin(@RequestBody JSONObject data) throws Exception{
         LoginService s=new LoginService();
         JSONObject json=s.Wxlogin( "wx39efc4783f761db1", "24eaf3fd01e92b853c546514c3a02a9f", data.getString("code"));
+        SignupService signup=new SignupService();
+        User user=signup.Signup("","","",json.getString("openid"));
         //User user=new User(data.getString("name"),json.getString("openid"));
         //user.setAvatarUrl(data.getString("avatarUrl"));
         //Usermapper mapper=new Usermapper();
@@ -160,9 +168,11 @@ public class UserController {
     @RequestMapping("/updatefavor")
     public JsonResult<JSONObject> UpdateScenicID(@RequestBody JSONObject data) throws Exception{
         Userservice s=new Userservice();
-        s.updateScenicID(data.getString("uuid"), data.getString("id"));
-        return new JsonResult<JSONObject>(null);
+        JSONObject re=s.updateUserfavors(data.getString("uuid"), data.getJSONArray("id").toJavaList(String.class));
+        return new JsonResult<JSONObject>(re);
     }
+
+
     @RequestMapping("/getusercount")
     public JsonResult<Integer> GetUserCount() throws Exception{
         Usermapper mapper=new Usermapper();

@@ -16,7 +16,7 @@ import lombok.Data;
 import java.time.LocalDate;
 @Data
 public class User {
-    protected UUID uuid;//用户唯一标识符
+    protected String uuid;//用户唯一标识符
     public String name;//用户名
     private String password;//密码
     private String avatarUrl;//用户头像储存地址
@@ -25,15 +25,23 @@ public class User {
 
     public User(){}//数据库要求有默认构造函数
     public User(String name,String password){
-        uuid=UUID.randomUUID();
+        this.uuid = UUID.randomUUID().toString();
         this.name=name;
         this.password=password;
         createdAt=LocalDate.now();
         updatedAt=LocalDate.now();
         avatarUrl="";
     }
+    public User(String uuid){
+        this.uuid=uuid;
+        this.name="";
+        this.password="";
+        this.avatarUrl="";
+        this.createdAt=LocalDate.now();
+        this.updatedAt=LocalDate.now();
+    }
     public User(Document doc){
-        this.uuid=UUID.fromString(doc.getString("uuid"));
+        this.uuid=doc.getString("uuid");
         this.name=doc.getString("name");
         this.password=doc.getString("password");
         this.avatarUrl=doc.getString("avatarUrl");
@@ -41,7 +49,7 @@ public class User {
         this.updatedAt=LocalDate.parse(doc.getString("updatedAt"));
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 

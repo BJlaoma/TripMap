@@ -1,4 +1,3 @@
-
 package com.TripMap.service;
 
 import com.TripMap.mapper.Favorsmapper;
@@ -8,6 +7,8 @@ import com.alibaba.fastjson.JSONObject;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -109,4 +110,40 @@ public class Userservice {
         mapper.deleteScenicID(uuid, id);
     }
 
+    /**
+     * @function 更新用户收藏，对比传入的id列表与数据库中的收藏进行同步
+     * @param uuid 用户唯一标识符
+     * @param newFavoriteIds 新的收藏ID列表
+     * @return JSONObject 包含添加和删除的收藏ID列表
+     * @throws Exception
+     */
+    public JSONObject updateUserfavors(String uuid, List<String> newFavoriteIds) throws Exception {
+        Favorsmapper mapper = new Favorsmapper();
+        JSONObject result = new JSONObject();
+        List<String> addedIds = new ArrayList<>();
+        List<String> removedIds = new ArrayList<>();
+        
+        // 获取用户当前的收藏
+        Userfavors currentFavors = mapper.getUserfavors(uuid);
+        List<String> currentIds = currentFavors.getId();
+        
+        // 处理新传入的每个ID
+        for (String id : newFavoriteIds) {
+            if (!currentIds.contains(id)) {
+                // 如果当前收藏中没有这个ID，添加它
+                mapper.insertScenicID(uuid, id);
+                addedIds.add(id);
+            } else {
+                // 如果当前收藏中有这个ID，删除它
+                mapper.deleteScenicID(uuid, id);
+                removedIds.add(id);
+            }
+        }
+        
+        // 将添加和删除的ID列表放入结果中
+        result.put("addedFavorites", addedIds);
+        result.put("removedFavorites", removedIds);
+        
+        return result;
+    }
 }
