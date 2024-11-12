@@ -33,4 +33,11 @@ public class PostUpvotedCommentIdsService
         }
     }
 
+    public String createUpvotedCommentIds(String uuid,ArrayList<String>array)
+    {
+        if(map.addUpvotedCommentIds(uuid,array))
+            return "创建成功";
+        else
+            return "创建失败";
+    }
 }

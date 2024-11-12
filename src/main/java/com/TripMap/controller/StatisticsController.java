@@ -13,6 +13,7 @@ public class StatisticsController {
     
     @GetMapping("/visits")
     public JsonResult<Long> getTotalVisits() {
-        return new JsonResult<Long>(MyInterceptor.getTotalVisits());
+        MyInterceptor myInterceptor=new MyInterceptor();
+        return new JsonResult<Long>(myInterceptor.getTotalVisits());
     }
 } 

@@ -23,6 +23,9 @@ import com.TripMap.service.Userservice;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.TripMap.mapper.Usermapper;
+import com.TripMap.pojo.UpvotedCommentIds;
+import com.TripMap.service.PostUpvotedCommentIdsService;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/user")
@@ -50,6 +53,10 @@ public class UserController {
     public JsonResult<User> testlogin(@RequestBody JSONObject data) throws Exception{
         SignupService s=new SignupService();
         User user=s.Signup("", "", "", data.getString("openid"));
+        UpvotedCommentIds upvotedCommentIds=new UpvotedCommentIds(data.getString("openid"),new ArrayList<String>());
+        PostUpvotedCommentIdsService postUpvotedCommentIdsService=new PostUpvotedCommentIdsService();
+        String msg=postUpvotedCommentIdsService.createUpvotedCommentIds(upvotedCommentIds.getUuid(),upvotedCommentIds.getCommentIds());
+        System.out.println("点赞列表"+msg);
         return new JsonResult<User>(user);
     }
     /**
@@ -69,6 +76,9 @@ public class UserController {
         //Usermapper mapper=new Usermapper();
         //mapper.addUser(user);
         //mapper.close();
+        UpvotedCommentIds upvotedCommentIds=new UpvotedCommentIds(json.getString("openid"),new ArrayList<>());
+        PostUpvotedCommentIdsService postUpvotedCommentIdsService=new PostUpvotedCommentIdsService();
+        postUpvotedCommentIdsService.post(upvotedCommentIds.getUuid(),upvotedCommentIds.getCommentIds());
         return new JsonResult<JSONObject>(json);
     }
     /**

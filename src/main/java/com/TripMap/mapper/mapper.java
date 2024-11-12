@@ -7,7 +7,7 @@ import com.mongodb.client.MongoDatabase;
 import lombok.Data;
 @Data
 public class mapper {
-    static String mongoURL="mongodb://localhost:27017";
+    static String mongoURL="mongodb://user:123456@localhost:27017/?authSource=journeymap";
     protected MongoDatabase database;
     protected MongoClient mongoClient;
     public mapper(){

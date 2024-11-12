@@ -8,28 +8,31 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.stereotype.Component;
+
+@Component
 public class MyInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(MyInterceptor.class);
-    private static long totalVisits = 0;
+    private final AtomicLong totalVisits = new AtomicLong(0);
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        synchronized (this) {
-            totalVisits++;
-        }
+        long currentVisits = totalVisits.incrementAndGet();
         
         String clientIP = request.getRemoteAddr();
         String requestURI = request.getRequestURI();
         String method = request.getMethod();
         
         logger.info("访问信息 - IP: {}, 方法: {}, 路径: {}, 总访问次数: {}", 
-                    clientIP, method, requestURI, totalVisits);
+                    clientIP, method, requestURI, currentVisits);
         
         return true;
     }
 
-    public static long getTotalVisits() {
-        return totalVisits;
+    public long getTotalVisits() {
+        return totalVisits.get();
     }
 
     @Override

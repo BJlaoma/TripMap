@@ -25,10 +25,10 @@ public class TagController {
 
 
     @GetMapping("/taglist")
-    public JSONObject getTags() {
-        JSONObject json=new JSONObject();
+    public JSONArray getTags() {
+        JSONArray json=new JSONArray();
         for(Tag tag:Tag.values()){
-            json.put(tag.name(),tag.getLabel());
+            json.add(tag.getLabel());
         }
         return json;
     }

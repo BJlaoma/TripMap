@@ -46,6 +46,10 @@ public class UpvotedCommentIdsmapper extends mapper
      */
     public boolean addUpvotedCommentIds(String uuid,ArrayList<String>array)
     {
+        if(findByUuid(uuid))
+        {
+            return false;
+        }
         InsertOneResult result = collection.insertOne(new Document("uuid",uuid).append("commentIds",array));
         return (result.wasAcknowledged());
     }

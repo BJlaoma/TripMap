@@ -1,10 +1,10 @@
-
 package com.TripMap.controller;
 
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.TripMap.mapper.Scenicmapper;
@@ -42,12 +42,23 @@ public class ScenicController {
     @PostMapping("/getscenicByMessage")
     public JsonlistResult<Scenic> getscenicByMessage(@RequestBody JSONObject data) throws Exception{
         Scenicmapper mapper=new Scenicmapper();
-        return new JsonlistResult<Scenic>(mapper.getScenicByMessage(data.getString("Province"),data.getString("City"),data.getString("category")));
+        String province = data.getString("Province");
+        String city = data.getString("City");
+        String category = data.getString("category");
+        if(province==null&&city==null&&category==null){
+            return new JsonlistResult<Scenic>(mapper.getScenices());
+        }
+        return new JsonlistResult<Scenic>(mapper.getScenicByMessage(province, city, category));
     }
 
     @RequestMapping("/datatest")
     public String datatest(@RequestBody JSONObject data ){
         System.out.println(data.getString("name"));
         return "succees";
+    }
+    @RequestMapping("/getscenicById")
+    public JsonResult<Scenic> getscenicById(@RequestParam("id") String id) throws Exception{
+        Scenicmapper mapper=new Scenicmapper();
+        return new JsonResult<Scenic>(mapper.getScenicById(id));
     }
 }

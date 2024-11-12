@@ -75,24 +75,34 @@ public class Scenicmapper extends mapper{
         return array;
     }
 
-    public ArrayList<Scenic> getScenicByMessage(String Province,String city,String category){
-        String address=null;
-        if(!Province.equals(city)){
-           address=Province+city;
-        }else {
-            address=Province;
+    public ArrayList<Scenic> getScenicByMessage(String Province, String city, String category) {
+        ArrayList<Bson> filters = new ArrayList<>();
+        
+        if (Province != null) {
+            filters.add(Filters.eq("province", Province));
         }
-        Bson filter=Filters.regex("location",address);
-        if(category!=null){
-            filter=Filters.and(filter,Filters.eq("category",category));
+        if (city != null) {
+            filters.add(Filters.eq("city", city));
         }
-        FindIterable<Document> result=collection.find(filter);
-        ArrayList<Scenic> array=new ArrayList<>();
-        if(result.first()!=null){
-            for(Document doc : result){
+        if (category != null) {
+            filters.add(Filters.eq("category", category));
+        }
+        
+        Bson filter = filters.isEmpty() ? new Document() : Filters.and(filters);
+        
+        FindIterable<Document> result = collection.find(filter);
+        ArrayList<Scenic> array = new ArrayList<>();
+        if (result.first() != null) {
+            for (Document doc : result) {
                 array.add(new Scenic(doc));
             }
         }
         return array;
+    }
+
+    public Scenic getScenicById(String id){
+        Bson filter=Filters.eq("id",id);
+        Document doc=collection.find(filter).first();
+        return new Scenic(doc);
     }
 }

@@ -1,0 +1,502 @@
+[{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2244"
+  },
+  "id": "1",
+  "name": "西湖",
+  "description": "西湖是位于浙江省杭州市西面的淡水湖。它是中国大陆首批国家重点风景名胜区和中国十大风景名胜之一。",
+  "location": "浙江省杭州市西湖区",
+  "latitude": "30.2587",
+  "longitude": "120.1485",
+  "contact": "+86-571-87179617",
+  "openTime": "全天开放",
+  "category": "自然景观",
+  "taglist": [
+    {
+      "tag": "湖泊"
+    },
+    {
+      "tag": "文化遗产"
+    }
+  ],
+  "links": [
+    {
+      "first": "https://www.hangzhou.gov.cn/col/col1346101/",
+      "second": "官方网站"
+    },
+    {
+      "first": "https://baike.baidu.com/item/西湖/2528",
+      "second": "百科介绍"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/xihu1.jpg",
+    "https://example.com/xihu2.jpg",
+    "https://example.com/xihu3.jpg"
+  ],
+  "createdAt": "2024-01-01 08:00:00",
+  "updatedAt": "2024-03-15 14:30:00",
+  "recomendation": "建议傍晚时分前往，可以欣赏到最美的湖光山色，特别是断桥残雪的景色令人陶醉。",
+  "city": "杭州市",
+  "province": "浙江省"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2245"
+  },
+  "id": "2",
+  "name": "故宫博物院",
+  "description": "故宫博物院是中国最大的古代宫殿建筑群，也是中国最具代表性的古建筑之一。",
+  "location": "北京市东城区景山前街4号",
+  "latitude": "39.9169",
+  "longitude": "116.3907",
+  "contact": "+86-10-85007421",
+  "openTime": "周二至周日 8:30-17:00（旺季），8:30-16:30（淡季）",
+  "category": "历史建筑",
+  "taglist": [
+    {
+      "tag": "博物馆"
+    },
+    {
+      "tag": "文化遗产"
+    },
+    {
+      "tag": "历史悠久"
+    }
+  ],
+  "links": [
+    {
+      "first": "https://www.dpm.org.cn/",
+      "second": "故宫博物院官网"
+    },
+    {
+      "first": "https://www.dpm.org.cn/visit/ticket.html",
+      "second": "在线购票"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/gugong1.jpg",
+    "https://example.com/gugong2.jpg",
+    "https://example.com/gugong3.jpg"
+  ],
+  "createdAt": "2024-01-02 09:00:00",
+  "updatedAt": "2024-03-16 11:20:00",
+  "recomendation": "建议提前在官网预约门票，参观时间建议预留一整天，可以请专业导游讲解。",
+  "province": "北京市",
+  "city": "北京市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2246"
+  },
+  "id": "3",
+  "name": "黄山",
+  "description": "黄山以奇松、怪石、云海、温泉'四绝'闻名于世，是中国十大名山之一。",
+  "location": "安徽省黄山市黄山区",
+  "latitude": "30.1333",
+  "longitude": "118.1750",
+  "contact": "+86-559-5562111",
+  "openTime": "全天开放（建议日出前进山）",
+  "category": "自然景观",
+  "taglist": [
+    {
+      "tag": "山脉"
+    },
+    {
+      "tag": "文化遗产"
+    },
+    {
+      "tag": "历史悠久"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.huangshan.com/",
+      "second": "黄山旅游官网"
+    },
+    {
+      "first": "http://www.huangshan.com/cn/ticket",
+      "second": "门票预订"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/huangshan1.jpg",
+    "https://example.com/huangshan2.jpg",
+    "https://example.com/huangshan3.jpg"
+  ],
+  "createdAt": "2024-01-03 10:00:00",
+  "updatedAt": "2024-03-17 16:45:00",
+  "recomendation": "建议住宿山顶，欣赏日出日落，避开节假日人流高峰，准备适合登山的装备。",
+  "province": "安徽省",
+  "city": "黄山市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2247"
+  },
+  "id": "4",
+  "name": "长城",
+  "description": "长城是中国古代的伟大防御工程，是中华文明的象征之一。",
+  "location": "北京市延庆区八达岭长城景区",
+  "latitude": "40.3544",
+  "longitude": "116.0197",
+  "contact": "+86-10-69121383",
+  "openTime": "周一至周日 7:30-17:30（旺季），8:00-17:00（淡季）",
+  "category": "历史建筑",
+  "taglist": [
+    {
+      "tag": "文化遗产"
+    },
+    {
+      "tag": "历史古迹"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.badaling.cn/",
+      "second": "八达岭长城官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/greatwall1.jpg",
+    "https://example.com/greatwall2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议早晨去避开人流，准备登山装备，带足饮用水。",
+  "province": "北京市",
+  "city": "北京市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2248"
+  },
+  "id": "5",
+  "name": "兵马俑博物馆",
+  "description": "秦始皇兵马俑博物馆展示了世界第八大奇迹，是中国最重要的考古发现之一。",
+  "location": "陕西省西安市临潼区秦始皇陵",
+  "latitude": "34.3844",
+  "longitude": "109.2783",
+  "contact": "+86-29-81399001",
+  "openTime": "8:30-17:00",
+  "category": "博物馆",
+  "taglist": [
+    {
+      "tag": "文化遗产"
+    },
+    {
+      "tag": "历史遗迹"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.bmy.com.cn/",
+      "second": "兵马俑官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/terracotta1.jpg",
+    "https://example.com/terracotta2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议请专业导游讲解，了解更多历史细节。",
+  "province": "陕西省",
+  "city": "西安市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2249"
+  },
+  "id": "6",
+  "name": "桂林山水",
+  "description": "桂林山水以喀斯特地貌闻名，漓江两岸的奇峰异石构成了令人叹为观止的自然画卷。",
+  "location": "广西壮族自治区桂林市",
+  "latitude": "25.2744",
+  "longitude": "110.2901",
+  "contact": "+86-773-2882088",
+  "openTime": "全天开放",
+  "category": "自然景观",
+  "taglist": [
+    {
+      "tag": "山水"
+    },
+    {
+      "tag": "自然风光"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.guilin.gov.cn/",
+      "second": "桂林旅游官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/guilin1.jpg",
+    "https://example.com/guilin2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议乘坐漓江游船，体验最经典的桂林山水风光。",
+  "province": "广西壮族自治区",
+  "city": "桂林市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2250"
+  },
+  "id": "7",
+  "name": "九寨沟",
+  "description": "九寨沟以其彩池、瀑布、雪山、森林闻名于世，被誉为'人间仙境'。",
+  "location": "四川省阿坝藏族羌族自治州九寨沟县",
+  "latitude": "33.2600",
+  "longitude": "103.9167",
+  "contact": "+86-837-7739753",
+  "openTime": "7:00-18:00",
+  "category": "自然景观",
+  "taglist": [
+    {
+      "tag": "自然保护区"
+    },
+    {
+      "tag": "世界遗产"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.jiuzhai.com/",
+      "second": "九寨沟官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/jiuzhaigou1.jpg",
+    "https://example.com/jiuzhaigou2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议至少安排2-3天时间游览，准备保暖衣物。",
+  "province": "四川省",
+  "city": "阿坝藏族羌族自治州"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2251"
+  },
+  "id": "8",
+  "name": "张家界国家森林公园",
+  "description": "以奇特的石英砂岩峰林地貌著称，是《阿凡达》电影外景地的原型之一。",
+  "location": "湖南省张家界市武陵源区",
+  "latitude": "29.3270",
+  "longitude": "110.4795",
+  "contact": "+86-744-8369999",
+  "openTime": "7:30-17:30",
+  "category": "自然景观",
+  "taglist": [
+    {
+      "tag": "自然公园"
+    },
+    {
+      "tag": "地质公园"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.zhangjiajie.gov.cn/",
+      "second": "张家界官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/zhangjiajie1.jpg",
+    "https://example.com/zhangjiajie2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议乘坐百龙电梯，游览天门山玻璃栈道。",
+  "province": "湖南省",
+  "city": "张家界市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2290"
+  },
+  "id": "50",
+  "name": "鼓浪屿",
+  "description": "鼓浪屿是厦门市重要的观光旅游景区，以其独特的历史建筑和音乐氛围闻名。",
+  "location": "福建省厦门市思明区鼓浪屿",
+  "latitude": "24.4478",
+  "longitude": "118.0658",
+  "contact": "+86-592-2060777",
+  "openTime": "全天开放",
+  "category": "文化景观",
+  "taglist": [
+    {
+      "tag": "海岛"
+    },
+    {
+      "tag": "文化遗产"
+    }
+  ],
+  "links": [
+    {
+      "first": "https://www.kulangsu.cn/",
+      "second": "鼓浪屿官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/gulangyu1.jpg",
+    "https://example.com/gulangyu2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议安排1-2天时间游览，可以体验钢琴博物馆和特色小吃。",
+  "province": "福建省",
+  "city": "厦门市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2252"
+  },
+  "id": "9",
+  "name": "三亚亚龙湾",
+  "description": "亚龙湾被誉为'天下第一湾',拥有7公里长的月牙形海湾和洁白的沙滩。",
+  "location": "海南省三亚市亚龙湾国家旅游度假区",
+  "latitude": "18.1597",
+  "longitude": "109.6339",
+  "contact": "+86-898-88568888",
+  "openTime": "全天开放",
+  "category": "自然景观",
+  "taglist": [
+    {
+      "tag": "海滩"
+    },
+    {
+      "tag": "度假胜地"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.sanya.gov.cn/",
+      "second": "三亚旅游官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/yalong1.jpg",
+    "https://example.com/yalong2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议选择11-4月份前往，可以体验各种水上运动。",
+  "province": "海南省",
+  "city": "三亚市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2253"
+  },
+  "id": "10",
+  "name": "丽江古城",
+  "description": "丽江古城是一座具有800多年历史的古城，是纳西族民居建筑的代表作。",
+  "location": "云南省丽江市古城区",
+  "latitude": "26.8721",
+  "longitude": "100.2399",
+  "contact": "+86-888-5111111",
+  "openTime": "全天开放",
+  "category": "历史文化",
+  "taglist": [
+    {
+      "tag": "古城"
+    },
+    {
+      "tag": "世界遗产"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.lijiang.gov.cn/",
+      "second": "丽江旅游官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/lijiang1.jpg",
+    "https://example.com/lijiang2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议住在古城内，体验纳西族文化，避开旅游旺季。",
+  "province": "云南省",
+  "city": "丽江市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2254"
+  },
+  "id": "11",
+  "name": "乐山大佛",
+  "description": "乐山大佛是世界上最大的石刻佛像，始建于唐代，历时90年完成。",
+  "location": "四川省乐山市市中区",
+  "latitude": "29.5446",
+  "longitude": "103.7715",
+  "contact": "+86-833-2302927",
+  "openTime": "7:30-18:30",
+  "category": "历史文化",
+  "taglist": [
+    {
+      "tag": "佛教文化"
+    },
+    {
+      "tag": "世界遗产"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.lsdf.cn/",
+      "second": "乐山大佛官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/leshan1.jpg",
+    "https://example.com/leshan2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议乘船观佛，近距离感受大佛的宏伟。",
+  "province": "四川省",
+  "city": "乐山市"
+},
+{
+  "_id": {
+    "$oid": "6720c6fe073493c2dbec2270"
+  },
+  "id": "30",
+  "name": "稻城亚丁",
+  "description": "被誉为'最后的香格里拉'，以其独特的雪山景观和原始生态环境闻名。",
+  "location": "四川省甘孜藏族自治州稻城县",
+  "latitude": "28.7292",
+  "longitude": "100.2982",
+  "contact": "+86-836-5728555",
+  "openTime": "全年开放（建议4-10月前往）",
+  "category": "自然景观",
+  "taglist": [
+    {
+      "tag": "雪山"
+    },
+    {
+      "tag": "自然保护区"
+    }
+  ],
+  "links": [
+    {
+      "first": "http://www.dcyd.gov.cn/",
+      "second": "稻城亚丁官网"
+    }
+  ],
+  "imagesURL": [
+    "https://example.com/daocheng1.jpg",
+    "https://example.com/daocheng2.jpg"
+  ],
+  "createdAt": "2024-03-20 15:30:00",
+  "updatedAt": "2024-03-20 15:30:00",
+  "recomendation": "建议提前适应高原环境，准备防寒保暖装备。",
+  "province": "四川省",
+  "city": "甘孜藏族自治州"
+}]

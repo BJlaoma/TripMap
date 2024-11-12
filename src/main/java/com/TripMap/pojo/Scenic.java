@@ -33,6 +33,8 @@ public class Scenic {
     protected LocalDateTime createdAt;//创建时间
     protected LocalDateTime updatedAt;//最后修改时间
     protected String recomendation;//推荐语
+    protected String province; // 省份
+    protected String city; // 城市
 
     @SuppressWarnings("unchecked")
     public Scenic(Document doc){
@@ -45,6 +47,7 @@ public class Scenic {
         this.contact = doc.getString("contact");
         this.openTime = doc.getString("openTime");
         this.category = doc.getString("category");
+
         
         // 处理 tags
         this.taglist = new ArrayList<>();
@@ -79,6 +82,8 @@ public class Scenic {
         this.updatedAt = LocalDateTime.parse(doc.getString("updatedAt"), formatter);
         
         this.recomendation = doc.getString("recomendation");
+        this.province = doc.getString("province");
+        this.city = doc.getString("city");
     }
 }
 
