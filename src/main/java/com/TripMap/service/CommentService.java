@@ -72,9 +72,10 @@ public class CommentService {
      * @param data json对象，包含uuid和content
      * @throws Exception
      */
-    public void addReply(String commentID,JSONObject data) throws Exception {
-        reply reply=new reply(data.getString("uuid"),data.getString("content"));
-        commentmapper.addReply(commentID,reply);
+    public reply addReply(String commentID,JSONObject data) throws Exception {
+        reply _reply=new reply(data.getString("uuid"),data.getString("content"));
+        commentmapper.addReply(commentID,_reply);
+        return _reply;
     }
 
     public static void main(String[] args) {

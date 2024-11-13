@@ -13,11 +13,13 @@ public class reply {
     String avatarUrl;//头像url
     String content;//回复内容
     LocalDateTime replyTime;//回复时间
+    String uuid;//用户唯一标识符
     public reply() {
         name = "";
         avatarUrl = "";
         content = "";
         replyTime = null;
+        uuid = "";
     }
 
     public reply(String name, String avatarUrl, String content) {
@@ -25,6 +27,7 @@ public class reply {
         this.avatarUrl = avatarUrl;
         this.content = content;
         replyTime = LocalDateTime.now();
+        this.uuid = "";
     }
     /**
      * @function 用用户id和content来创建回复
@@ -34,6 +37,7 @@ public class reply {
      */
     public reply(String uuid,String content) throws Exception{
         this.content=content;
+        this.uuid = uuid;
         replyTime=LocalDateTime.now();
         Usermapper mapper=new Usermapper();
         User user=mapper.getUserByUUID(uuid);
@@ -45,5 +49,6 @@ public class reply {
         this.avatarUrl=doc.getString("avatarUrl");
         this.content=doc.getString("content");
         this.replyTime=LocalDateTime.parse(doc.getString("replyTime"));
+        this.uuid = doc.getString("uuid");
     }
 }

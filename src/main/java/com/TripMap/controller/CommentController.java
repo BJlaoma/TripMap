@@ -52,9 +52,8 @@ public class CommentController {
      * @throws Exception
      */
     @RequestMapping("/addReply")
-    public String addReply(@RequestBody JSONObject data) throws Exception{
+    public JsonResult<reply> addReply(@RequestBody JSONObject data) throws Exception{
         CommentService commentService = new CommentService();
-        commentService.addReply(data.getString("commentID"),data);
-        return "添加成功";
+        return new JsonResult<reply>(commentService.addReply(data.getString("commentID"),data));
     }
 }

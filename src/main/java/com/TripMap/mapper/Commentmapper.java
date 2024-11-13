@@ -56,7 +56,11 @@ public class Commentmapper extends mapper {
                 .append("content", comment.getContent())
                 .append("commentTime", comment.getCommentTime().toString())
                 .append("uuid", comment.getUuid().toString())
-                .append("scenic_ID", comment.getScenic_ID()));
+                .append("scenic_ID", comment.getScenic_ID())
+                .append("avatarUrl", comment.getAvatarUrl())
+                .append("name", comment.getName())
+                .append("rating", comment.getRating())
+                .append("replies", new ArrayList<reply>()));
     }
 
     /**
@@ -98,7 +102,8 @@ public class Commentmapper extends mapper {
             .append("name", reply.getName())
             .append("avatarUrl", reply.getAvatarUrl())
             .append("content", reply.getContent())
-            .append("replyTime", reply.getReplyTime().toString());
+            .append("replyTime", reply.getReplyTime().toString())
+            .append("uuid", reply.getUuid());
         
         // 使用$addToSet操作符将reply添加到replies数组
         Bson update = new Document("$addToSet", new Document("replies", replyDoc));
