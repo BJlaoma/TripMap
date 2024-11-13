@@ -1,10 +1,13 @@
 package com.TripMap.Config;
+import com.TripMap.Interceptor.MyInterceptor;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.nio.charset.Charset;
@@ -45,5 +48,17 @@ public class fastJsonConfig extends WebMvcConfigurationSupport {
         converter.setSupportedMediaTypes(mediaTypeList);
         converters.add(converter);
     }
+
+
+    @Autowired
+    private MyInterceptor myInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(myInterceptor)
+                .addPathPatterns("/**")    // 拦截所有请求
+                .excludePathPatterns("/static/**");  // 排除静态资源
+    }
+
 }
 //from:https://blog.csdn.net/taojin12/article/details/88244907
