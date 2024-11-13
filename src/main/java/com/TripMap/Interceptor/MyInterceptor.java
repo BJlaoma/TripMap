@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(MyInterceptor.class);
-    private final AtomicLong totalVisits = new AtomicLong(0);
+    private static final AtomicLong totalVisits = new AtomicLong(0);
     
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
