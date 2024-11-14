@@ -125,8 +125,8 @@ public class Scenicmapper extends mapper{
         .append("recomendation", scenic.getRecomendation())
         .append("province", scenic.getProvince())
         .append("city", scenic.getCity())
-        .append("createdAt", scenic.getCreatedAt())
-        .append("updatedAt", scenic.getUpdatedAt());
+        .append("createdAt", scenic.getCreatedAt().toString())
+        .append("updatedAt", scenic.getUpdatedAt().toString());
         collection.insertOne(doc);
         return "添加成功";
     }
