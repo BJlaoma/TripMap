@@ -105,4 +105,29 @@ public class Scenicmapper extends mapper{
         Document doc=collection.find(filter).first();
         return new Scenic(doc);
     }
+    public long ScenicCount(){
+        return collection.countDocuments();
+    }
+    public String addScenic(Scenic scenic){
+        Document doc=new Document()
+        .append("id", scenic.getId())
+        .append("name", scenic.getName())
+        .append("description", scenic.getDescription())
+        .append("location", scenic.getLocation())
+        .append("latitude", scenic.getLatitude())
+        .append("longitude", scenic.getLongitude())
+        .append("contact", scenic.getContact())
+        .append("openTime", scenic.getOpenTime())
+        .append("category", scenic.getCategory())
+        .append("taglist", scenic.getTaglist())
+        .append("links", scenic.getLinks())
+        .append("imagesURL", scenic.getImagesURL())
+        .append("recomendation", scenic.getRecomendation())
+        .append("province", scenic.getProvince())
+        .append("city", scenic.getCity())
+        .append("createdAt", scenic.getCreatedAt())
+        .append("updatedAt", scenic.getUpdatedAt());
+        collection.insertOne(doc);
+        return "添加成功";
+    }
 }

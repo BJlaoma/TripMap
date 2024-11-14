@@ -80,6 +80,11 @@ public class GetAuditListService {
         auditMapper=new AuditMapper();
         auditMapper.updateAuditJudge(auditItemId, judge);
     }
+    public AuditItem getAuditItemById(String auditItemId){
+        auditMapper=new AuditMapper();
+        return auditMapper.getAuditItemById(auditItemId);
+    }
+
 }
 
 

@@ -14,6 +14,9 @@ import java.util.List;
 
 import org.bson.Document;
 
+import com.TripMap.mapper.Scenicmapper;
+import com.alibaba.fastjson.JSONObject;
+
 import lombok.Data;
 //景点类
 @Data
@@ -84,6 +87,54 @@ public class Scenic {
         this.recomendation = doc.getString("recomendation");
         this.province = doc.getString("province");
         this.city = doc.getString("city");
+    }
+    public Scenic(String name,String description,String location,String latitude,String longitude,String contact,String openTime,String category,ArrayList<Tag> taglist,ArrayList<Pair<String,String>> links,ArrayList<String> imagesURL,String recomendation,String province,String city){
+        this.name=name;
+        this.description=description;
+        this.location=location;
+        this.latitude=latitude;
+        this.longitude=longitude;
+        this.contact=contact;
+        this.openTime=openTime;
+        this.category=category;
+        this.taglist=taglist;
+        this.links=links;
+        this.imagesURL=imagesURL;
+        this.recomendation=recomendation;
+        this.province=province;
+        this.city=city;
+        this.createdAt=LocalDateTime.now();
+        this.updatedAt=LocalDateTime.now();
+        this.id=String.valueOf(new Scenicmapper().ScenicCount()+1);
+    }
+    public Scenic(JSONObject data){
+        this.name=data.getString("name");
+        this.description=data.getString("description");
+        this.location=data.getString("location");
+        this.latitude=data.getString("latitude");
+        this.longitude=data.getString("longitude");
+        this.contact=data.getString("contact");
+        this.openTime=data.getString("openTime");
+        this.category=data.getString("category");
+        this.taglist=new ArrayList<>();
+        this.links=new ArrayList<>();
+        this.imagesURL=new ArrayList<>();
+        for(Object tag:data.getJSONArray("taglist")){
+            this.taglist.add(Tag.fromString(tag.toString()));
+        }
+        for(Object link:data.getJSONArray("links")){
+            JSONObject linkObj=(JSONObject) link;
+            this.links.add(new Pair<>(linkObj.getString("first"),linkObj.getString("second")));
+        }
+        for(Object image:data.getJSONArray("imagesURL")){
+            this.imagesURL.add(image.toString());
+        }
+        this.recomendation=data.getString("recomendation");
+        this.province=data.getString("province");
+        this.city=data.getString("city");
+        this.createdAt=LocalDateTime.now();
+        this.updatedAt=LocalDateTime.now();
+        this.id=String.valueOf(new Scenicmapper().ScenicCount()+1);
     }
 }
 

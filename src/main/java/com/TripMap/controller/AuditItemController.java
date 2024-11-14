@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TripMap.mapper.Scenicmapper;
+import com.TripMap.mapper.UnjudgedScenicmapper;
 import com.TripMap.pojo.AuditItem;
 import com.TripMap.pojo.JsonResult;
 import com.TripMap.pojo.JsonlistResult;
+import com.TripMap.pojo.Scenic;
 import com.TripMap.pojo.Tag;
 import com.TripMap.service.GetAuditListService;
+import com.TripMap.service.ItemToScenicService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
@@ -67,5 +71,18 @@ public class AuditItemController {
         GetAuditListService service = new GetAuditListService();
         service.updateAuditJudge(auditItemId, "refused");
         return new JsonResult<String>("success");
+    }
+
+    @PostMapping("/itemToScenic")
+    public JsonResult<Scenic> itemToScenic(@RequestParam("auditItemId") String auditItemId) throws Exception{
+        ItemToScenicService service = new ItemToScenicService();
+        return new JsonResult<Scenic>(service.itemToScenic(auditItemId));
+    }
+
+    @PostMapping("/addUnjudgedScenic")
+    public JsonResult<String> addUnjudgedScenic(@RequestBody JSONObject data){
+        Scenicmapper mapper = new Scenicmapper();
+        Scenic scenic=new Scenic(data);
+        return new JsonResult<String>(mapper.addScenic(scenic));
     }
 }
