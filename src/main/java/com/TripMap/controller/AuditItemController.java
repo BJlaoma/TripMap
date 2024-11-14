@@ -41,7 +41,7 @@ public class AuditItemController {
         for (Object tag : tags) {
             String tagString = (String) tag;
 
-            tagList.add(Tag.fromLabel(tagString));
+            tagList.add(Tag.StrtoTag(tagString));
         }
         AuditItem auditItem=new AuditItem(scenicName, address, category, tagList, content, uuid);
         ArrayList<String> pictureUrl=service.uploadPictureUrl(file);

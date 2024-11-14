@@ -1,10 +1,14 @@
-
 package com.TripMap.pojo;
 
 public enum Tag {
-    NicePrice("性价比高"),
-    HISTORICAL("历史悠久"),MUSEUM("博物馆"),LAKE("湖泊"),
-    CULTURE("文化遗产"),MOUNTAIN("山脉"),PARK("公园");
+    性价比高("NicePrice"),
+    历史悠久("HISTORICAL"),
+    博物馆("MUSEUM"),
+    湖泊("LAKE"),
+    文化遗产("CULTURE"),
+    山脉("MOUNTAIN"),
+    公园("PARK");
+
     private String label;
 
     // 构造函数
@@ -16,8 +20,9 @@ public enum Tag {
     public String getLabel() {
         return label;
     }
+    
     public void setLabel(String label){
-        this.label=label;
+        this.label = label;
     }
 
     // 根据字符串获取对应的 Tag
@@ -29,6 +34,7 @@ public enum Tag {
         }
         throw new IllegalArgumentException("No constant with label " + label + " found");
     }
+    
     // 根据标签获取对应的枚举常量
     public static Tag fromLabel(String label) {
         for (Tag tag : Tag.values()) {
@@ -37,5 +43,14 @@ public enum Tag {
             }
         }
         throw new IllegalArgumentException("没有找到对应的标签: " + label);
+    }
+
+    public static Tag StrtoTag(String str){
+        for(Tag tag:Tag.values()){
+            if(tag.toString().equals(str)){
+                return tag;
+            }
+        }
+        throw new IllegalArgumentException("没有找到对应的标签: " + str);
     }
 }

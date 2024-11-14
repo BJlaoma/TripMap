@@ -28,7 +28,7 @@ public class TagController {
     public JSONArray getTags() {
         JSONArray json=new JSONArray();
         for(Tag tag:Tag.values()){
-            json.add(tag.getLabel());
+            json.add(tag.toString());
         }
         return json;
     }
