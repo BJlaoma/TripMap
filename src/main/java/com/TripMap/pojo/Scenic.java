@@ -80,9 +80,9 @@ public class Scenic {
         this.imagesURL = (ArrayList<String>) doc.get("imagesURL");
 
         // 处理时间
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.createdAt = LocalDateTime.parse(doc.getString("createdAt"), formatter);
-        this.updatedAt = LocalDateTime.parse(doc.getString("updatedAt"), formatter);
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.createdAt = LocalDateTime.parse(doc.getString("createdAt"));
+        this.updatedAt = LocalDateTime.parse(doc.getString("updatedAt"));
         
         this.recomendation = doc.getString("recomendation");
         this.province = doc.getString("province");
