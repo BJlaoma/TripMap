@@ -9,10 +9,12 @@
 package com.TripMap.mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import com.TripMap.pojo.Pair;
 import com.TripMap.pojo.Scenic;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -109,24 +111,33 @@ public class Scenicmapper extends mapper{
         return collection.countDocuments();
     }
     public String addScenic(Scenic scenic){
-        Document doc=new Document()
-        .append("id", scenic.getId())
-        .append("name", scenic.getName())
-        .append("description", scenic.getDescription())
-        .append("location", scenic.getLocation())
-        .append("latitude", scenic.getLatitude())
-        .append("longitude", scenic.getLongitude())
-        .append("contact", scenic.getContact())
-        .append("openTime", scenic.getOpenTime())
-        .append("category", scenic.getCategory())
-        .append("taglist", scenic.getTaglist())
-        .append("links", scenic.getLinks())
-        .append("imagesURL", scenic.getImagesURL())
-        .append("recomendation", scenic.getRecomendation())
-        .append("province", scenic.getProvince())
-        .append("city", scenic.getCity())
-        .append("createdAt", scenic.getCreatedAt().toString())
-        .append("updatedAt", scenic.getUpdatedAt().toString());
+        // 将ArrayList<Pair>转换为List<Document>
+        List<Document> linksDocs = new ArrayList<>();
+        for (Pair<String, String> link : scenic.getLinks()) {
+            Document linkDoc = new Document()
+                .append("first", link.getFirst())
+                .append("second", link.getSecond());
+            linksDocs.add(linkDoc);
+        }
+
+        Document doc = new Document()
+            .append("id", scenic.getId())
+            .append("name", scenic.getName())
+            .append("description", scenic.getDescription())
+            .append("location", scenic.getLocation())
+            .append("latitude", scenic.getLatitude())
+            .append("longitude", scenic.getLongitude())
+            .append("contact", scenic.getContact())
+            .append("openTime", scenic.getOpenTime())
+            .append("category", scenic.getCategory())
+            .append("taglist", scenic.getTaglist())
+            .append("links", linksDocs)  // 使用转换后的linksDocs
+            .append("imagesURL", scenic.getImagesURL())
+            .append("recomendation", scenic.getRecomendation())
+            .append("province", scenic.getProvince())
+            .append("city", scenic.getCity())
+            .append("createdAt", scenic.getCreatedAt().toString())
+            .append("updatedAt", scenic.getUpdatedAt().toString());
         collection.insertOne(doc);
         return "添加成功";
     }

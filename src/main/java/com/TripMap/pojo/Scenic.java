@@ -63,18 +63,15 @@ public class Scenic {
             }
         }
 
-        // 处理 links
-        //有错误需要修改
-        this.links = new ArrayList<>();
-        @SuppressWarnings("unchecked")
-        List<Document> linkDocs = (List<Document>) doc.get("links");
-        if (linkDocs != null) {
-            for (Document linkDoc : linkDocs) {
-                String link = linkDoc.getString("first");
-                String message = linkDoc.getString("second");
-                this.links.add(new Pair<>(link, message)); // 假设 Pair 是一个简单的类
+        // 转换links
+        List<Document> linksDocs = (List<Document>) doc.get("links");
+        ArrayList<Pair<String, String>> links = new ArrayList<>();
+        if (linksDocs != null) {
+            for (Document linkDoc : linksDocs) {
+                links.add(new Pair<>(linkDoc.getString("key"), linkDoc.getString("value")));
             }
         }
+        this.links = links;
 
         // 处理 imagesURL
         this.imagesURL = (ArrayList<String>) doc.get("imagesURL");
