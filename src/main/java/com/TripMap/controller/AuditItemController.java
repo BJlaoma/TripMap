@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.TripMap.mapper.AuditMapper;
 import com.TripMap.mapper.Scenicmapper;
 import com.TripMap.mapper.UnjudgedScenicmapper;
 import com.TripMap.pojo.AuditItem;
@@ -82,7 +83,16 @@ public class AuditItemController {
     @PostMapping("/addUnjudgedScenic")
     public JsonResult<String> addUnjudgedScenic(@RequestBody JSONObject data){
         Scenicmapper mapper = new Scenicmapper();
+        AuditMapper auditmapper = new AuditMapper();
         Scenic scenic=new Scenic(data);
+        auditmapper.updateAuditJudge(data.getString("auditItemId"), "builded");
         return new JsonResult<String>(mapper.addScenic(scenic));
+    }
+
+    @PostMapping("/refuseAddScenic")
+    public JsonResult<String> refuseAddScenic(@RequestParam("auditItemId") String auditItemId){
+        AuditMapper auditmapper = new AuditMapper();
+        auditmapper.updateAuditJudge(auditItemId, "unbuilded");
+        return new JsonResult<String>("refused to add scenic");
     }
 }

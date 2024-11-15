@@ -16,18 +16,18 @@ public class ItemToScenicService {
     public Scenic itemToScenic(String auditItemId) throws Exception{
         JSONObject json=GetMsgByGaoDe(auditItemId);
         AuditItem Item=new GetAuditListService().getAuditItemById(auditItemId);
-        String latitude=json.getString("location").split(",")[0];
-        String longitude=json.getString("location").split(",")[1];
+        String latitude=json.getString("location").split(",")[1];
+        String longitude=json.getString("location").split(",")[0];
         Scenic scenic=new Scenic(Item.getScenicName(), Item.getContent(),
          json.getString("pname")+json.getString("cityname")+json.getString("address")
          , latitude, longitude, json.getString("tel"),
          json.getString("opentime_week"), Item.getCategory(), Item.getTags()
          , new ArrayList<Pair<String,String>>(),Item.getPictureUrl(),"",
-         json.getString("province"), json.getString("city"));
+         json.getString("pname"), json.getString("cityname"));
         return scenic;
     }
 
     public static void main(String[] args) throws Exception{
-        System.out.println(new ItemToScenicService().itemToScenic("57c1aa81-f4f8-4a27-9a7e-d73bb22440b0"));
+        System.out.println(new ItemToScenicService().itemToScenic("5aa6e03d-933b-409b-984a-79fdd3f90bbc"));
     }
 }

@@ -120,7 +120,7 @@ public class Scenic {
         this.links=new ArrayList<>();
         this.imagesURL=new ArrayList<>();
         for(Object tag:data.getJSONArray("taglist")){
-            this.taglist.add(Tag.fromString(tag.toString()));
+            this.taglist.add(Tag.StrtoTag(tag.toString()));
         }
         for(Object link:data.getJSONArray("links")){
             JSONObject linkObj=(JSONObject) link;
